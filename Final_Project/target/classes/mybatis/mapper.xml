@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.care.mybatis.Mapper">
+	<select id="idcheck" resultType="dto4">
+		select * from final_info where id=#{id}
+	</select>
+	
+	<select id="loginchk" resultType="dto4">
+		select * from final_info where id=#{id}
+	</select>
+
+	<insert id="signchk" parameterType="dto4">
+		insert into final_info values(#{status},#{id},#{pw},#{pwchk},#{name},
+			#{age},#{school,jdbcType=VARCHAR},#{addr,jdbcType=VARCHAR},#{fam,jdbcType=VARCHAR},
+			#{teaNum,jdbcType=VARCHAR},#{stuNum,jdbcType=VARCHAR},#{parNum,jdbcType=VARCHAR},
+			#{email})
+	</insert>
+	
+	<!-- 
+	<update id="pwreset" parameterType="dto4">
+		update final_info set pw=123456, pwchk=123456 where id=#{id}
+	</update>
+	 -->
+	
+	<select id="pwreset2" resultType="String">
+		select pw from final_info where id=#{id}
+	</select>
+	
+</mapper>
