@@ -1,6 +1,8 @@
 package com.care.dao;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,6 +45,14 @@ public class managementDAO {
 
 	public String pwreset2(String id) {
 		return sqlSession.selectOne(namespace+".pwreset2", id);
+	}
+
+	public List<infoDTO> sInfo(infoDTO dto4) {
+		return sqlSession.selectList(namespace+".sInfo", dto4);
+	}
+
+	public List<infoDTO> pInfo(infoDTO dto4) {
+		return sqlSession.selectList(namespace+".pInfo", dto4);
 	}
 	
 

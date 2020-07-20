@@ -12,7 +12,7 @@
 	</select>
 
 	<insert id="signchk" parameterType="dto4">
-		insert into final_info values(#{status},#{id},#{pw},#{pwchk},#{name},
+		insert into final_info values(#{status,jdbcType=VARCHAR},#{id},#{pw},#{pwchk},#{name},
 			#{age},#{school,jdbcType=VARCHAR},#{addr,jdbcType=VARCHAR},#{fam,jdbcType=VARCHAR},
 			#{teaNum,jdbcType=VARCHAR},#{stuNum,jdbcType=VARCHAR},#{parNum,jdbcType=VARCHAR},
 			#{email})
@@ -26,6 +26,14 @@
 	
 	<select id="pwreset2" resultType="String">
 		select pw from final_info where id=#{id}
+	</select>
+	
+	<select id="sInfo" resultType="dto4">
+		select * from final_info 
+	</select>
+	
+	<select id="pInfo" resultType="dto4">
+		select * from final_info 
 	</select>
 	
 </mapper>

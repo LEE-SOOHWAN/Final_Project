@@ -4,10 +4,12 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.care.dao.managementDAO;
 import com.care.dto.infoDTO;
@@ -73,6 +75,16 @@ public class managementService {
 
 	public String pwreset2(String id) {
 		return dao.pwreset2(id);
+	}
+
+	public void sInfo(infoDTO dto4, Model model) {
+		model.addAttribute("student", dao.sInfo(dto4));
+		System.out.println(dao.sInfo(dto4));
+	}
+
+	public void pInfo(infoDTO dto4, Model model) {
+		model.addAttribute("parent", dao.pInfo(dto4));
+		System.out.println(dao.pInfo(dto4));
 	}
 
 }

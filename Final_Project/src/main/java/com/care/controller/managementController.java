@@ -1,10 +1,12 @@
 package com.care.controller;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -39,7 +41,7 @@ public class managementController {
 	}
 
 	@RequestMapping("loginchk")
-	public String loginchk(infoDTO dto4,Model model) {
+	public String loginchk(infoDTO dto4,Model model,HttpSession session) {
 		int a = service.loginchk(dto4);
 		if (a == 1) {
 			return "student/sMain";
@@ -174,8 +176,38 @@ public class managementController {
 	}
 
 	@RequestMapping("tMain")
-	public String tMain() {
-		return "teacher/tMain";
+	public String tMain(Model model, infoDTO dto4, HttpSession session) {
+		session.setAttribute("cut", dto4.getStatus());
+		if(session.getAttribute("cut") == null) {
+			model.addAttribute("alert6", 6);
+			return "common/alert";
+		}else {
+			return "teacher/tMain";
+		}
 	}
-
+	@RequestMapping("sMain")
+	public String sMain(Model model, infoDTO dto4, HttpSession session) {
+		session.setAttribute("cut", dto4.getStatus());
+		if(session.getAttribute("cut") == null) {
+			model.addAttribute("alert6", 6);
+			return "common/alert";
+		}else {
+			return "student/sMain";
+		}
+	}
+	
+	@RequestMapping("sInfo")
+	public String sInfo(infoDTO dto4, Model model) {
+		service.sInfo(dto4, model);
+		return "info/sInfo";
+	}
+	@RequestMapping("pInfo")
+	public String pInfo(infoDTO dto4, Model model) {
+		service.pInfo(dto4, model);
+		return "info/pInfo";
+	}
+	@RequestMapping("Score")
+	public String Score() {
+		return "";
+	}
 }

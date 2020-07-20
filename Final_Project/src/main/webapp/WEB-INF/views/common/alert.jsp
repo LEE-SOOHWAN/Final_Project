@@ -19,6 +19,9 @@
 		}else if('${alert5}' == 5){
 			alert("아이디가 존재하지 않습니다");
 			location.href = "login"
+		}else if('${alert6}' == 6){
+			alert("올바르지 않은 접근입니다");
+			location.href = history.back();
 		}
 	</script>
 </head>
